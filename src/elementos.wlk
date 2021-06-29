@@ -8,13 +8,15 @@ class Barrio {
 
 }
 class Elemento {
-	method esBueno()	
+	method esBueno()
+	method efectoDeAtaque(plaga)
 }
 class Hogar inherits Elemento {
 	var property nivelDeMugre
 	var property confortQueOfrece
 	
 	override method esBueno() = nivelDeMugre <= confortQueOfrece / 2 
+	override method efectoDeAtaque(plaga) { plaga.nivelDeDanio() + self.nivelDeMugre() }   
 }
 
 class Huerta inherits Elemento {
@@ -22,6 +24,10 @@ class Huerta inherits Elemento {
 	const property nivel
 	
 	override method esBueno() = capacidadDeProduccion > nivel
+	override method efectoDeAtaque(plaga) { 
+		 self.capacidadDeProduccion() - (plaga.nivelDeDanio() * 0.1)
+		if (plaga.transmiteEnfermedades()) { self.capacidadDeProduccion() - 18 }
+	}
 }
 
 class Mascota inherits Elemento {
@@ -29,4 +35,7 @@ class Mascota inherits Elemento {
 	
 	override method esBueno() = nivelDeSalud > 250
 	method masSaludable(numero) = nivelDeSalud > numero 
+	override method efectoDeAtaque(plaga) {
+		if (plaga.transmiteEnfermedades()) self.nivelDeSalud() - plaga.nivelDeDanio()
+	}
 }
