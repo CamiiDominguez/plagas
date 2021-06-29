@@ -1,3 +1,4 @@
+import plagas.*
 class Barrio {
 	var property elementos = []
 

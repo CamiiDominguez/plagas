@@ -1,0 +1,22 @@
+import plagas.*
+
+describe "Requerimentos de Plagas" {
+	const cucas = new Cucarachas(poblacion = 30, pesoPromedio = 10)
+	const pulgas = new Pulgas(poblacion = 200)
+	const mosquitos = new Mosquitos(poblacion = 70)
+	const garrapatas = new Garrapatas(poblacion = 15)
+	
+	test "Nivel de Daño" {
+		assert.equals(15, cucas.nivelDeDanio())
+		assert.equals(400, pulgas.nivelDeDanio())
+		assert.equals(70, mosquitos.nivelDeDanio())
+		assert.equals(30, garrapatas.nivelDeDanio())
+	}
+	
+	test "Transmisión de Enfermedades" {
+		assert.that(cucas.transmiteEnfermedades())
+		assert.that(pulgas.transmiteEnfermedades())
+		assert.notThat(mosquitos.transmiteEnfermedades())
+		assert.that(garrapatas.transmiteEnfermedades())
+	}
+}

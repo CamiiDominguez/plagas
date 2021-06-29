@@ -1,0 +1,20 @@
+import elementos.*
+
+describe "Elementos" {
+	const casita = new Hogar(nivelDeMugre = 5, confortQueOfrece = 10)
+	const huerta = new Huerta(capacidadDeProduccion = 100, nivel = 800)
+	const gatito = new Mascota(nivelDeSalud = 300)
+	const perrito = new Mascota (nivelDeSalud = 170)
+	const barrio1 = new Barrio(elementos = [casita, huerta, gatito, perrito])
+	
+	test "Son buenos?" {
+	assert.that(casita.esBueno())
+	assert.notThat(huerta.esBueno())
+	assert.that(gatito.esBueno())
+	assert.notThat(perrito.esBueno())
+	}	
+	
+	test "Barrio copado" {
+		assert.notThat(barrio1.esCopado())
+	}
+}
